@@ -1,4 +1,3 @@
-CREATE DATABASE covid;
 
 use covid;
 
