@@ -138,7 +138,7 @@ You should now have three Grafana Dashboards
 * Covid-19 States
 * Covid-19 US Counties
 
-For more information on Grafanan
+For more information on Grafana
 
 * See [Grafana Documentation](https://grafana.com/docs/grafana/latest/?utm_source=grafana_gettingstarted)
 
