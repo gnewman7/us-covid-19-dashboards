@@ -16,6 +16,7 @@ If your wish to change
 * version of MySQL or Grafana
 * Ports used
 * DB Password
+
 Edit the [.env](https://github.com/gnewman7/us-covid-19-dashboards/blob/master/.env) file be done before running docker-compose.
 
 ### Start the MySQL and Grafana Docker Containers
