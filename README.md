@@ -193,7 +193,8 @@ Removing us-covid-19-dashboards_mysql_1   ... done
 
 Removing network us-covid-19-dashboards_default
 
-Now you can shutdown Docker Desktop
+Now you can shutdown Docker Desktop.
+
 Your data will be persisted locally after shutdown and available when restarting.
 
 ### Restarting MySQL and Grafana
