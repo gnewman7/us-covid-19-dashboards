@@ -7,12 +7,18 @@ Make sure you have Docker installed on desktop.
 [Directions to Install Docker for Mac or Windows](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
 
 
-## Start MySQL and Grafana Docker Containers
+## MySQL and Grafana Docker Containers
 Once you have Docker running you are ready to start the MySQL and Grafana container included in the docker-compose.yml file
 
-Go to your project directory
+Go to your project directory **us-covid-19-dashboards**
 
-The command below will start the MySQL and Grafana Docker Containers
+If your wish to change 
+* version of MySQL or Grafana
+* Ports used
+* DB Password
+Edit the [.env](https://github.com/gnewman7/us-covid-19-dashboards/blob/master/.env) file be done before running docker-compose.
+
+### Start the MySQL and Grafana Docker Containers
 
 `$ docker-compose up -d`
 
