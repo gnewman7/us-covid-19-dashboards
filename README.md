@@ -134,15 +134,11 @@ Green Database Connection OK
 
 * Hover on the + sign -> Import
 * Click Upload .json file
-
-Select json files in the dashboards directory
+* Select json file in the dashboards directory
 * covid-19 US.json
-* covid-19 States.json
-* covid-19 US Counties.json
-
 * Select the data source covid
 * Click the Import button
-* Repeat for states anc counties dashboards
+* Repeat for states and counties dashboards
 
 You should now have three Grafana Dashboards
 * Covid-19 US
