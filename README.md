@@ -82,9 +82,6 @@ To initialize data in the **covid-19-data** directory run the following command:
 
 `git submodule update --init --recursive`
 
-$ cd covid-19-data
-$ ls -la
-
 You should now see in the covid-19-data directory the following:
 * LICENSE			
 * `PROBABLE-CASES-NOTE.md`
