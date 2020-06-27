@@ -4,8 +4,8 @@ This open source project is provided `as is` to users wanting to create dashboar
 
 ## Install Docker for Desktop
 Make sure you have Docker installed
-Follow direction to install for Mac or Windows
-https://docs.docker.com/get-started/#download-and-install-docker-desktop
+follow direction to [Install Docker for Mac or Windows](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
+
 
 ## Start MySQL and Grafana Docker Containers
 Once you have Docker running you are ready to start the MySQL and Grafana container included in the docker-compose.yml file
