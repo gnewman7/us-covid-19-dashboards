@@ -8,7 +8,7 @@ Make sure you have Docker installed on desktop.
 
 
 ## MySQL and Grafana Docker Containers
-Once you have Docker running you are ready to start the MySQL and Grafana container included in the docker-compose.yml file
+Once you have Docker running you are ready to start the MySQL and Grafana containers included in the docker-compose.yml file
 
 Go to your project directory **us-covid-19-dashboards**
 
