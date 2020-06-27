@@ -48,7 +48,7 @@ Enter password when prompted
 ### Create Database Schema
 * File -> Open SQL Script 
 * Select the sql directory in this project
-* Select file **CreateTables.sql**
+* Select file [CreateTables.sql](https://github.com/gnewman7/us-covid-19-dashboards/blob/master/sql/CreateTables.sql)
 * Run the sql script to create the following tables and views:
 
 #### Tables
@@ -91,7 +91,7 @@ You should now see in the covid-19-data directory the following:
 Load Data Using MySQL Workbench
 * File -> Open SQL Script 
 * Select the sql directory in this project
-* Select file **LoadData.sql**
+* Select file [LoadData.sql](https://github.com/gnewman7/us-covid-19-dashboards/blob/master/sql/LoadData.sql#L5)
 * Change lines 5,17, and 29 to reflect the file path on your system.
 * Then Run the sql script to Load the data
 
@@ -100,6 +100,8 @@ Load Data Using MySQL Workbench
 ## Using Grafana to View Covid Dashboards
 
 ### Login into Grafana
+[Log into Grafana Documentation](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#log-in-for-the-first-time)
+
 http://localhost:3000/login
 * username = admin
 * password = admin
