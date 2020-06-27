@@ -134,8 +134,7 @@ Green Database Connection OK
 
 * Hover on the + sign -> Import
 * Click Upload .json file
-* Select json file in the dashboards directory
-* covid-19 US.json
+* Select json file **covid-19 US.json** in the dashboards directory
 * Select the data source covid
 * Click the Import button
 * Repeat for states and counties dashboards
