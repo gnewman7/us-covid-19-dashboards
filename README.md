@@ -78,7 +78,7 @@ https://github.com/nytimes/covid-19-data
 
 It has been added to this project as a submodule
 
-To initialize data to the covid-19-data directory run the following command:
+To initialize data in the **covid-19-data** directory run the following command:
 
 `git submodule update --init --recursive`
 
