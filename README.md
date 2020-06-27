@@ -107,6 +107,9 @@ http://localhost:3000/login
 * click skip
 
 ## Create a data source to connect to MySQL Docker container
+
+[Adding Grafana Data Source Documentation](https://grafana.com/docs/grafana/latest/features/datasources/add-a-data-source/#add-a-data-source)
+
 Hover over Configuration (Gear) -> Data Source -> Add data source -> Select MySQL
 
 * Name = covid
@@ -120,6 +123,8 @@ Save & Test - button
 Green Database Connection OK
 
 ## Import Grafana Dashboards
+
+[Importing Grafana Dashboards Documentation](https://grafana.com/docs/grafana/latest/reference/export_import/#importing-a-dashboard)
 
 * Hover on the + sign -> Import
 * Click Upload .json file
