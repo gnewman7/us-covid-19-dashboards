@@ -3,8 +3,8 @@
 This open source project is provided `as is` to users wanting to create dashboard visualizations of New York Times covid-19 data locally on their desktop using a MySQL database and Grafana open source software running in Docker containers.
 
 ## Install Docker for Desktop
-Make sure you have Docker installed
-follow direction to [Install Docker for Mac or Windows](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
+Make sure you have Docker installed on desktop.
+[Directions to Install Docker for Mac or Windows](https://docs.docker.com/get-started/#download-and-install-docker-desktop)
 
 
 ## Start MySQL and Grafana Docker Containers
