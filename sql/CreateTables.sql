@@ -1,4 +1,6 @@
 
+CREATE DATABASE covid;
+
 use covid;
 
 -- Create covid.us Table 
