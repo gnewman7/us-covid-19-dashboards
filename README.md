@@ -17,7 +17,21 @@ If your wish to change
 * Ports used
 * DB Password
 
-Edit the [.env](https://github.com/gnewman7/us-covid-19-dashboards/blob/master/.env) file be done before running docker-compose.
+Edit the [.env](https://github.com/gnewman7/us-covid-19-dashboards/blob/master/.env) file before running docker-compose.
+
+```
+# Ports
+MYSQL_PORT=3307
+GRAFANA_PORT=3000
+
+# Versions
+GRAFANA_CONTAINER_VERSION=7.3.4
+MYSQL_VERSION=5.7.24
+
+# Change DB_PASS
+DB_USER=root
+DB_PASS=123xxx
+```
 
 ### Start the MySQL and Grafana Docker Containers
 
