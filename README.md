@@ -25,30 +25,43 @@ Edit the [.env](https://github.com/gnewman7/us-covid-19-dashboards/blob/master/.
 
 ```
 Creating network "us-covid-19-dashboards_default" with the default driver
-Creating grafana_covid ... done
-Creating mysql_covid   ... done
+Creating mysql_covid-19 ... done
+Creating grafana_covid-19 ... done
+
 ```
 
 ## Show running docker processes
 `$ docker ps`
 
 ```
-CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                               NAMES
-1ac0e442853b        mysql:5.7.24            "docker-entrypoint.s…"   5 seconds ago       Up 4 seconds        33060/tcp, 0.0.0.0:3307->3306/tcp   mysql_covid
-05fe584ec6de        grafana/grafana:7.1.5   "/run.sh"                5 seconds ago       Up 4 seconds        0.0.0.0:3000->3000/tcp              grafana_covid
+CONTAINER ID        IMAGE                   COMMAND                  CREATED              STATUS              PORTS                               NAMES
+eb022286b379        grafana/grafana:7.3.4   "/run.sh"                About a minute ago   Up About a minute   0.0.0.0:3000->3000/tcp              grafana_covid-19
+c1e33dc2475c        mysql:5.7.24            "docker-entrypoint.s…"   About a minute ago   Up About a minute   33060/tcp, 0.0.0.0:3307->3306/tcp   mysql_covid-19
 ```
+
+## Show running docker-compose processes
+`$ docker-compose ps`
+
+```
+      Name                    Command               State                 Ports              
+---------------------------------------------------------------------------------------------
+grafana_covid-19   /run.sh                          Up      0.0.0.0:3000->3000/tcp           
+mysql_covid-19     docker-entrypoint.sh mysql ...   Up      0.0.0.0:3307->3306/tcp, 33060/tcp
+```
+
 
 ## Using MySQL 
 
 ```
-$ docker exec -it mysql_covid bash
+$ docker exec -it mysql_covid-19 bash
 
-root@1ac0e442853b:/# ls sql
+root@1ac0e442853b:/# ls -la sql
 
-drwxr-xr-x 5 root root  160 Jul 25 16:32 .
-drwxr-xr-x 1 root root 4096 Oct  2 19:41 ..
--rw-r--r-- 1 root root 3007 Jun 27 19:07 CreateTables.sql
--rw-r--r-- 1 root root  783 Sep 27 19:36 LoadData.sql
+drwxr-xr-x 4 root root  128 Nov 26 00:44 .
+drwxr-xr-x 1 root root 4096 Nov 26 01:58 ..
+-rw-r--r-- 1 root root 3031 Nov 26 00:44 CreateTables.sql
+-rw-r--r-- 1 root root  783 Nov 26 00:44 LoadData.sql
+
 ```
 
 ### SQL Scripts
@@ -58,7 +71,6 @@ Included are two sql scripts
 
 ### Using MySQL monitor
 To connect to the MySQL monitor enter the following command followed by the mysql password you enter in your .env file.
-
 
 ```
 root@1ac0e442853b:/# mysql -uroot -p
@@ -201,37 +213,11 @@ http://localhost:3000/login
 
 * click skip
 
-## Create a data source to connect to MySQL Docker container
 
-[Adding Grafana Data Source Documentation](https://grafana.com/docs/grafana/latest/features/datasources/add-a-data-source/#add-a-data-source)
-
-Hover over Configuration (Gear) -> Data Source -> Add data source -> Select MySQL
-
-* Name = covid
-* Host = mysql:3306
-* Database = covid
-* User = root
-* Password = 123xxx (can change .env to your own password before staring containers)
-
-Save & Test - button
-
-Green Database Connection OK
-
-## Import Grafana Dashboards
-
-[Importing Grafana Dashboards Documentation](https://grafana.com/docs/grafana/latest/reference/export_import/#importing-a-dashboard)
-
-* Hover on the + sign -> Import
-* Click Upload .json file
-* Select json file **covid-19 US.json** in the dashboards directory
-* Select the data source covid
-* Click the Import button
-* Repeat for states and counties dashboards
-
-You should now have three Grafana Dashboards
-* Covid-19 US
-* Covid-19 States
-* Covid-19 US Counties
+You should now have three Grafana Dashboards that display Covid-19 statistics
+* United States of America
+* States
+* US Counties
 
 For more information on Grafana
 
@@ -247,40 +233,67 @@ Each day the New York Times updates their data on github.
 
 To update your local database do the following:
 
-#### Go to covid data directory
+### Go to covid data directory
 `$ cd covid-19-data`
-##### Check the repository
 
-$ git remote -v
+#### Check the repository
 
-`origin	https://github.com/nytimes/covid-19-data (fetch)`
+`$ git remote -v`
 
-`origin	https://github.com/nytimes/covid-19-data (push)`
+```
+origin	https://github.com/nytimes/covid-19-data (fetch)
+origin	https://github.com/nytimes/covid-19-data (push)
+```
+### Pull in new data from NY Times remote repository
 
-Pull in new data from NY Times remote repository
+`$ git pull origin master`
 
-`$ git pull`
+### ReLoad Data
 
-ReLoad Data Using MySQL Workbench
-* File -> Open SQL Script 
-* Select the sql directory in this project
-* Select file **LoadData.sql**
-* Then Run the sql script to ReLoad the data
+```
+$ docker exec -it mysql_covid-19 bash
+root@c1e33dc2475c:/# mysql -uroot -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.24-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> source ./sql/LoadData.sql;
+Query OK, 309 rows affected (0.02 sec)
+Records: 309  Deleted: 0  Skipped: 0  Warnings: 0
+
+Query OK, 14699 rows affected (0.68 sec)
+Records: 14699  Deleted: 0  Skipped: 0  Warnings: 0
+
+Query OK, 764735 rows affected (34.04 sec)
+Records: 764735  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> exit
+root@c1e33dc2475c:/# exit
+$ 
+
+```
 
 ### Shutdown MySQL and Grafana
 From the us-covid-19-dashboards directory issue the following command:
 
 `$ docker-compose down`
 
-Stopping us-covid-19-dashboards_grafana_1 ... done
-
-Stopping us-covid-19-dashboards_mysql_1   ... done
-
-Removing us-covid-19-dashboards_grafana_1 ... done
-
-Removing us-covid-19-dashboards_mysql_1   ... done
-
+```
+Stopping grafana_covid-19 ... done
+Stopping mysql_covid-19   ... done
+Removing grafana_covid-19 ... done
+Removing mysql_covid-19   ... done
 Removing network us-covid-19-dashboards_default
+```
 
 Now you can shutdown Docker Desktop.
 
