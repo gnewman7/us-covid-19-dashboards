@@ -211,7 +211,7 @@ Records: 586302  Deleted: 0  Skipped: 0  Warnings: 0
 ## Using Grafana to View Covid Dashboards
 
 ### Login into Grafana
-[Log into Grafana Documentation](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#log-in-for-the-first-time)
+[View Grafana Documentation](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#log-in-for-the-first-time)
 
 http://localhost:3000/login
 * username = admin
