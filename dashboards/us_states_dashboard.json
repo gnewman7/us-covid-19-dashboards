@@ -16,8 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1606344362672,
+  "iteration": 1606351916967,
   "links": [],
   "panels": [
     {
@@ -406,7 +405,7 @@
     },
     {
       "aliasColors": {
-        "Avg": "red",
+        "Avg": "yellow",
         "cases": "yellow",
         "rate": "orange"
       },
@@ -914,5 +913,5 @@
   "timezone": "browser",
   "title": "States",
   "uid": "IEgrClmGz",
-  "version": 2
+  "version": 1
 }
