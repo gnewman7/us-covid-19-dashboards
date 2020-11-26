@@ -1,18 +1,23 @@
 version: '3'
 services:
     grafana:
-        container_name: grafana_covid
+        container_name: grafana_covid-19
         image: grafana/grafana:${GRAFANA_CONTAINER_VERSION}
         environment:
             - GF_AUTH_ANONYMOUS_ENABLED:true
         restart: always
         ports:
             - "${GRAFANA_PORT}:3000"
+        depends_on:
+            - mysql    
         volumes:
-            - grafana:/var/lib/grafana
+            - grafana1:/var/lib/grafana
+            - ${PWD}/dashboards:/var/lib/grafana/dashboards
+            - ${PWD}/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+            - ${PWD}/provisioning/datasources:/etc/grafana/provisioning/datasources
 
     mysql:
-        container_name: mysql_covid
+        container_name: mysql_covid-19
         image: mysql:${MYSQL_VERSION}
         environment:
             # make sure to use something more secure in production
@@ -24,7 +29,7 @@ services:
         # consider turning off general_log in production for performance
         command: ['mysqld', '--innodb-print-all-deadlocks=true', '--general_log=1', '--sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION', '--max-connections=512']
         volumes:
-            - mysql:/var/lib/mysql
+            - mysql1:/var/lib/mysql
             - ${PWD}/sql:/sql/
             - ${PWD}/covid-19-data:/covid-19-data
 
@@ -33,5 +38,5 @@ services:
 
 
 volumes:
-    grafana:
-    mysql:
+    grafana1:
+    mysql1:

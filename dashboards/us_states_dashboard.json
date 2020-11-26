@@ -1,40 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_COVID",
-      "label": "covid",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "mysql",
-      "pluginName": "MySQL"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "7.0.2"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "mysql",
-      "name": "MySQL",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -48,109 +12,16 @@
       }
     ]
   },
+  "description": "Covid-19 Stats for US States",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1593212537431,
+  "id": 2,
+  "iteration": 1606344362672,
   "links": [],
   "panels": [
     {
-      "datasource": "${DS_COVID}",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 0
-      },
-      "id": 8,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.2",
-      "targets": [
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  date_time AS \"time\",\n  cases\nFROM us_counties\nWHERE\n  $__timeFilter(date_time) AND\n  county = '$County' AND\n  state = '$State'\nORDER BY date_time",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "cases"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "us_counties",
-          "timeColumn": "date_time",
-          "timeColumnType": "datetime",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            },
-            {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "county",
-                "=",
-                "'$County'"
-              ],
-              "type": "expression"
-            },
-            {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "state",
-                "=",
-                "'$State'"
-              ],
-              "type": "expression"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Cases for $County",
-      "type": "stat"
-    },
-    {
-      "datasource": "${DS_COVID}",
+      "datasource": "covid",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -165,7 +36,7 @@
               },
               {
                 "color": "red",
-                "value": 10
+                "value": 0
               }
             ]
           }
@@ -173,7 +44,97 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.5",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  cases\nFROM us_states\nWHERE\n  $__timeFilter(date_time) AND\n  state = '$State'\nORDER BY date_time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "cases"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "us_states",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": "text",
+              "name": "",
+              "params": [
+                "state",
+                "=",
+                "'$State'"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Cases for $State",
+      "type": "stat"
+    },
+    {
+      "datasource": "covid",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
         "w": 12,
         "x": 12,
         "y": 0
@@ -188,17 +149,19 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  date_time AS \"time\",\n  deaths\nFROM us_counties\nWHERE\n  $__timeFilter(date_time) AND\n  county = '$County' AND\n  state = '$State'\nORDER BY date_time",
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  deaths\nFROM us_states\nWHERE\n  $__timeFilter(date_time) AND\n  state = '$State'\nORDER BY date_time",
           "refId": "A",
           "select": [
             [
@@ -210,7 +173,7 @@
               }
             ]
           ],
-          "table": "us_counties",
+          "table": "us_states",
           "timeColumn": "date_time",
           "timeColumnType": "datetime",
           "where": [
@@ -220,14 +183,170 @@
               "type": "macro"
             },
             {
-              "datatype": "varchar",
+              "datatype": "text",
               "name": "",
               "params": [
-                "county",
+                "state",
                 "=",
-                "'$County'"
+                "'$State'"
               ],
               "type": "expression"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Deaths for $State",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {
+        "Avg": "red",
+        "rate": "blue"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "covid",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:523",
+          "alias": "Avg",
+          "bars": false,
+          "lines": true,
+          "pointradius": 3,
+          "points": true
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  rate AS \"rate\"\nFROM us_states_case_rate_vw\nWHERE\n  $__timeFilter(date_time) AND\n  state = '$State'\nORDER BY date_time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "rate"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "rate"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "us_states_case_rate_vw",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": "text",
+              "name": "",
+              "params": [
+                "state",
+                "=",
+                "'$State'"
+              ],
+              "type": "expression"
+            }
+          ]
+        },
+        {
+          "format": "time_series",
+          "group": [
+            {
+              "params": [
+                "7d",
+                "none"
+              ],
+              "type": "time"
+            }
+          ],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  $__timeGroupAlias(date_time,7d),\n  avg(rate) AS \"Avg\"\nFROM us_states_case_rate_vw\nWHERE\n  $__timeFilter(date_time) AND\n  state = '$State'\nGROUP BY 1\nORDER BY $__timeGroup(date_time,7d)",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "rate"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "avg"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "Avg"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "us_states_case_rate_vw",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
             },
             {
               "datatype": "varchar",
@@ -242,31 +361,271 @@
           ]
         }
       ],
+      "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Deaths for $County",
-      "type": "stat"
+      "title": "Cases/Day for $State",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:446",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:447",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "Avg": "red",
+        "cases": "yellow",
+        "rate": "orange"
+      },
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_COVID}",
+      "datasource": "covid",
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:248",
+          "alias": "Avg",
+          "bars": false,
+          "lines": true,
+          "pointradius": 3,
+          "points": true
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  rate\nFROM us_states_death_rate_vw\nWHERE\n  $__timeFilter(date_time) AND\n  state = '$State'\nORDER BY date_time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "rate"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "us_states_death_rate_vw",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": "text",
+              "name": "",
+              "params": [
+                "state",
+                "=",
+                "'$State'"
+              ],
+              "type": "expression"
+            }
+          ]
+        },
+        {
+          "format": "time_series",
+          "group": [
+            {
+              "params": [
+                "7d",
+                "none"
+              ],
+              "type": "time"
+            }
+          ],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  $__timeGroupAlias(date_time,7d),\n  avg(rate) AS \"Avg\"\nFROM us_states_death_rate_vw\nWHERE\n  $__timeFilter(date_time) AND\n  state = '$State'\nGROUP BY 1\nORDER BY $__timeGroup(date_time,7d)",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "rate"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "avg"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "Avg"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "us_states_death_rate_vw",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "state",
+                "=",
+                "'$State'"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Deaths/Day for $State",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:145",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:146",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "cases": "blue"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "covid",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 15
       },
       "hiddenSeries": false,
       "id": 2,
@@ -282,10 +641,8 @@
       "lines": false,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -299,7 +656,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  date_time AS \"time\",\n  cases\nFROM us_counties\nWHERE\n  $__timeFilter(date_time) AND\n  county = '$County' AND\n  state = '$State'\nORDER BY date_time",
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  cases\nFROM us_states\nWHERE\n  $__timeFilter(date_time) AND\n  state = '$State'\nORDER BY date_time",
           "refId": "A",
           "select": [
             [
@@ -311,7 +668,7 @@
               }
             ]
           ],
-          "table": "us_counties",
+          "table": "us_states",
           "timeColumn": "date_time",
           "timeColumnType": "datetime",
           "where": [
@@ -321,17 +678,7 @@
               "type": "macro"
             },
             {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "county",
-                "=",
-                "'$County'"
-              ],
-              "type": "expression"
-            },
-            {
-              "datatype": "varchar",
+              "datatype": "text",
               "name": "",
               "params": [
                 "state",
@@ -347,7 +694,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Cases for $County",
+      "title": "Cases for $State",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -363,7 +710,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1889",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -372,7 +718,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1890",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -388,307 +733,27 @@
     },
     {
       "aliasColors": {
-        "deaths": "red"
+        "deaths": "blue"
       },
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_COVID}",
+      "datasource": "covid",
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 12,
         "x": 12,
-        "y": 8
-      },
-      "hiddenSeries": false,
-      "id": 9,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  date_time AS \"time\",\n  deaths\nFROM us_counties\nWHERE\n  $__timeFilter(date_time) AND\n  county = '$County' AND\n  state = '$State'\nORDER BY date_time",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "us_counties",
-          "timeColumn": "date_time",
-          "timeColumnType": "datetime",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            },
-            {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "county",
-                "=",
-                "'$County'"
-              ],
-              "type": "expression"
-            },
-            {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "state",
-                "=",
-                "'$State'"
-              ],
-              "type": "expression"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Deaths for $County",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:2037",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:2038",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_COVID}",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 16
-      },
-      "hiddenSeries": false,
-      "id": 6,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  date_time AS \"time\",\n  rate\nFROM us_county_case_rate_vw\nWHERE\n  $__timeFilter(date_time) AND\n  county = '$County' AND\n  state = '$State'\nORDER BY date_time",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "rate"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "us_county_case_rate_vw",
-          "timeColumn": "date_time",
-          "timeColumnType": "datetime",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            },
-            {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "county",
-                "=",
-                "'$County'"
-              ],
-              "type": "expression"
-            },
-            {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "state",
-                "=",
-                "'$State'"
-              ],
-              "type": "expression"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Cases per Day for $County",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:1433",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:1434",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {
-        "deaths": "red",
-        "rate": "red"
-      },
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_COVID}",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 16
+        "y": 15
       },
       "hiddenSeries": false,
       "id": 7,
@@ -704,10 +769,8 @@
       "lines": false,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -721,19 +784,19 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  date_time AS \"time\",\n  rate\nFROM us_county_death_rate_vw\nWHERE\n  $__timeFilter(date_time) AND\n  county = '$County' AND\n  state = '$State'\nORDER BY date_time",
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  deaths\nFROM us_states\nWHERE\n  $__timeFilter(date_time) AND\n  state = '$State'\nORDER BY date_time",
           "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "rate"
+                  "deaths"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "us_county_death_rate_vw",
+          "table": "us_states",
           "timeColumn": "date_time",
           "timeColumnType": "datetime",
           "where": [
@@ -743,17 +806,7 @@
               "type": "macro"
             },
             {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "county",
-                "=",
-                "'$County'"
-              ],
-              "type": "expression"
-            },
-            {
-              "datatype": "varchar",
+              "datatype": "text",
               "name": "",
               "params": [
                 "state",
@@ -769,7 +822,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Deaths per Day for $County",
+      "title": "Deaths for $State",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -785,7 +838,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1508",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -794,7 +846,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1509",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -810,15 +861,19 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 25,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "allValue": null,
-        "current": {},
-        "datasource": "${DS_COVID}",
+        "current": {
+          "selected": false,
+          "text": "California",
+          "value": "California"
+        },
+        "datasource": "covid",
         "definition": "select distinct(state) from us_states",
         "hide": 0,
         "includeAll": false,
@@ -828,28 +883,6 @@
         "options": [],
         "query": "select distinct(state) from us_states",
         "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_COVID}",
-        "definition": "select distinct(county) from us_counties where state = '$State'",
-        "hide": 0,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "County",
-        "options": [],
-        "query": "select distinct(county) from us_counties where state = '$State'",
-        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -879,7 +912,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Covid-19 US Counties",
-  "uid": "uDLaDmWGk",
-  "version": 15
+  "title": "States",
+  "uid": "IEgrClmGz",
+  "version": 2
 }

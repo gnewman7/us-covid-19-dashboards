@@ -1,0 +1,15 @@
+# config file version
+apiVersion: 1
+
+datasources:
+- name: 'covid'
+  type: mysql
+  url: mysql_covid-19:3306
+  database: covid
+  user: root
+  password: 123xxx    
+  jsonData:
+    maxOpenConns: 0         # Grafana v5.4+
+    maxIdleConns: 2         # Grafana v5.4+
+    connMaxLifetime: 14400  # Grafana v5.4+ 
+    
