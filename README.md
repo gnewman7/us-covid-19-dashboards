@@ -175,26 +175,21 @@ To initialize data in the **covid-19-data** directory run the following command:
 
 `git submodule update --init --recursive`
 
-You should now see in the covid-19-data directory the following:
+You should now see in the covid-19-data directory the following files and directories:
 ```
-$ ls -la
-total 61360
-drwxr-xr-x  16 gordon.newman  WORKDAYINTERNAL\Domain Users       512 Nov 25 16:46 .
-drwxr-xr-x  14 gordon.newman  WORKDAYINTERNAL\Domain Users       448 Nov 25 17:24 ..
--rw-r--r--   1 gordon.newman  WORKDAYINTERNAL\Domain Users        38 Nov 25 16:46 .git
-drwxr-xr-x   3 gordon.newman  WORKDAYINTERNAL\Domain Users        96 Nov 25 16:46 .github
--rw-r--r--   1 gordon.newman  WORKDAYINTERNAL\Domain Users        10 Nov 25 16:46 .gitignore
--rw-r--r--   1 gordon.newman  WORKDAYINTERNAL\Domain Users      1289 Nov 25 16:46 LICENSE
--rw-r--r--   1 gordon.newman  WORKDAYINTERNAL\Domain Users      2771 Nov 25 16:46 NEW-YORK-DEATHS-METHODOLOGY.md
--rw-r--r--   1 gordon.newman  WORKDAYINTERNAL\Domain Users      3162 Nov 25 16:46 PROBABLE-CASES-NOTE.md
--rw-r--r--   1 gordon.newman  WORKDAYINTERNAL\Domain Users     19502 Nov 25 16:46 README.md
-drwxr-xr-x   4 gordon.newman  WORKDAYINTERNAL\Domain Users       128 Nov 25 16:46 colleges
-drwxr-xr-x   4 gordon.newman  WORKDAYINTERNAL\Domain Users       128 Nov 25 16:46 excess-deaths
-drwxr-xr-x   5 gordon.newman  WORKDAYINTERNAL\Domain Users       160 Nov 25 16:46 live
-drwxr-xr-x   4 gordon.newman  WORKDAYINTERNAL\Domain Users       128 Nov 25 16:46 mask-use
--rw-r--r--   1 gordon.newman  WORKDAYINTERNAL\Domain Users  30871345 Nov 25 16:46 us-counties.csv
--rw-r--r--   1 gordon.newman  WORKDAYINTERNAL\Domain Users    493071 Nov 25 16:46 us-states.csv
--rw-r--r--   1 gordon.newman  WORKDAYINTERNAL\Domain Users      7380 Nov 25 16:46 us.csv
+$ ls
+LICENSE
+colleges
+us-counties.csv
+NEW-YORK-DEATHS-METHODOLOGY.md
+excess-deaths
+us-states.csv
+PROBABLE-CASES-NOTE.md
+live
+us.csv
+README.md
+mask-use
+
 ```
 
 ### Load Data using LoadData.sql script
