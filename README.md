@@ -177,19 +177,17 @@ To initialize data in the **covid-19-data** directory run the following command:
 
 You should now see in the covid-19-data directory the following files and directories:
 ```
-$ ls
 LICENSE
-colleges
-us-counties.csv
 NEW-YORK-DEATHS-METHODOLOGY.md
-excess-deaths
-us-states.csv
 PROBABLE-CASES-NOTE.md
-live
-us.csv
 README.md
+colleges
+excess-deaths
+live
 mask-use
-
+us.csv
+us-counties.csv
+us-states.csv
 ```
 
 ### Load Data using LoadData.sql script
