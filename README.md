@@ -176,19 +176,20 @@ To initialize data in the **covid-19-data** directory run the following command:
 `git submodule update --init --recursive`
 
 You should now see in the covid-19-data directory the following files and directories:
-```
-LICENSE
-NEW-YORK-DEATHS-METHODOLOGY.md
-PROBABLE-CASES-NOTE.md
-README.md
-colleges
-excess-deaths
-live
-mask-use
-us.csv
-us-counties.csv
-us-states.csv
-```
+
+* LICENSE
+* NEW-YORK-DEATHS-METHODOLOGY.md
+* PROBABLE-CASES-NOTE.md
+* README.md
+* colleges
+* excess-deaths
+* live
+* mask-use
+
+* us.csv
+* us-counties.csv
+* us-states.csv
+
 
 ### Load Data using LoadData.sql script
 This script loads the csv data into the following three tables:
