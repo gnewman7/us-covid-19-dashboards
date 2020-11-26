@@ -239,13 +239,12 @@ You should now have three Grafana Dashboards that display Covid-19 statistics
 * States
 * US Counties
 
-For more information on Grafana
+## References
 
-* See [Grafana Documentation](https://grafana.com/docs/grafana/latest/?utm_source=grafana_gettingstarted)
+* Grafana Documentation](https://grafana.com/docs/grafana/latest/?utm_source=grafana_gettingstarted)
 
-For more information on MySQL
+* [MySQL Documentation](https://dev.mysql.com/doc/)
 
-* See [MySQL Documentation](https://dev.mysql.com/doc/)
 
 ## Updating New York Times covid-19-data
 
