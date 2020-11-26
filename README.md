@@ -107,7 +107,6 @@ mysql>
 
 ```
 
-
 ### Create Database Schema
 * From the mysql> prompt run the CreateTables.sql script as follows:
 
