@@ -31,7 +31,8 @@ INTO TABLE covid.us_counties
 FIELDS TERMINATED BY ','  
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
-(@date,county,state,fips,cases,deaths)
-SET date_time = CONCAT(@date, ' 17:00:00');
+(@date,county,state,fips,cases,@deaths)
+SET date_time = CONCAT(@date, ' 17:00:00'),
+deaths = if(@deaths = ' ', null, @deaths);
 
 
